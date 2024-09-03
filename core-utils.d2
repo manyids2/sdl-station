@@ -1,0 +1,81 @@
+Log.cpp -> utils.FileSystemUtil.h
+Log.cpp -> utils.Platform.h
+Settings.cpp -> utils.FileSystemUtil.h
+Settings.cpp -> utils.Platform.h
+Settings.cpp -> utils.StringUtil.h
+Settings.h -> utils.Delegate.h
+
+math {
+  Vector2f.cpp -> _.utils.StringUtil.h
+  Vector4f.cpp -> _.utils.StringUtil.h
+}
+
+renderer {
+  Renderer.cpp -> _.utils.StringUtil.h
+  Renderer.cpp -> _.utils.Platform.h
+  Renderer_GLES20.cpp -> _.utils.FileSystemUtil.h
+  Renderer_GLES20.cpp -> _.utils.StringUtil.h
+  Shader.cpp -> _.utils.HtmlColor.h
+  Shader.cpp -> _.utils.StringUtil.h
+}
+
+utils {
+  _.Paths.h
+  FileSystemUtil.h -> TimeUtil.h
+  FileSystemUtil.cpp -> FileSystemUtil.h
+  FileSystemUtil.cpp -> StringUtil.h
+  FileSystemUtil.cpp -> ZipFile.h
+  FileSystemUtil.cpp -> md5.h
+  FileSystemUtil.cpp -> _.Paths.h
+  FileSystemUtil.cpp -> _.Settings.h
+
+  HtmlColor.cpp -> StringUtil.h
+  HtmlColor.cpp -> _.Log.h
+
+  MathExpr.h
+  MathExpr.cpp -> MathExpr.h
+  MathExpr.cpp -> StringUtil.h
+  MathExpr.cpp -> FileSystemUtil.h
+  MathExpr.cpp -> TimeUtil.h
+  MathExpr.cpp -> _.LocaleES.h
+  MathExpr.cpp -> _.math.Misc.h
+
+  _.Platform.h
+  _.Window.h
+  Platform.cpp -> Platform.h
+  Platform.cpp -> Window.h
+  Platform.cpp -> FileSystemUtil.h
+  Platform.cpp -> StringUtil.h
+  Platform.cpp -> Scripting.h
+  Platform.cpp -> _.Paths.h
+  Platform.cpp -> _.Log.h
+
+  Randomizer.h
+  Randomizer.cpp -> Randomizer.h
+
+  StringListLock.h
+  StringListLock.cpp -> StringListLock.h
+
+  StringUtil.h
+  StringUtil.cpp -> StringUtil.h
+  StringUtil.cpp -> han.h
+
+  ThreadPool.h
+  ThreadPool.cpp -> ThreadPool.h
+
+  TimeUtil.h
+  TimeUtil.cpp -> TimeUtil.h
+  TimeUtil.cpp -> StringUtil.h
+  TimeUtil.cpp -> _.LocaleES.h
+
+  ZipFile.h
+  ZipFile.cpp -> ZipFile.h
+  ZipFile.cpp -> _.LocaleES.h
+  ZipFile.cpp -> zip_file.hpp
+  ZipFile.cpp -> FileSystemUtil.h
+  ZipFile.cpp -> md5.h
+  ZipFile.cpp -> _.Log.h
+
+  md5.h
+  md5.cpp -> md5.h
+}

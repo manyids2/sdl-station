@@ -12,3 +12,5 @@ local C = function(cmd) return "<Cmd>" .. cmd .. "<CR>" end
 nmap("<M-w>", C "!make -j6", "make")
 nmap("<leader><M-w>", C "!cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=true -DCMAKE_BUILD_TYPE=Debug .", "make")
 nmap("<M-r>", C "!./vststation", "make")
+
+-- nmap("<M-w>", C "!make d2", "make")

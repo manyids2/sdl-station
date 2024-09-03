@@ -1,0 +1,172 @@
+vars: {
+  d2-config: {
+    layout-engine: dagre
+  }
+}
+
+Log.h
+Log.cpp -> Log.h
+Log.cpp -> utils.FileSystemUtil.h
+Log.cpp -> utils.Platform.h
+Log.cpp -> Settings.h
+Log.cpp -> Paths.h
+
+Settings.cpp -> Settings.h
+Settings.cpp -> utils.FileSystemUtil.h
+Settings.cpp -> Log.h
+Settings.cpp -> Scripting.h
+Settings.cpp -> utils.Platform.h
+Settings.cpp -> utils.StringUtil.h
+Settings.cpp -> Paths.h
+Settings.h -> utils.Delegate.h
+
+resources {
+  ResourceManager.h
+}
+
+math {
+  Misc.cpp -> Misc.h
+  Vector2f.h -> Misc.h
+  Vector3f.h -> Misc.h
+  Vector4f.h -> Misc.h
+  Vector2i.cpp -> Vector2i.h
+  Vector2f.cpp -> Vector2f.h
+  Vector3f.cpp -> Vector3f.h
+  Vector4f.cpp -> Vector4f.h
+  Vector4f.cpp -> Vector2f.h
+
+  Transform4x4f.h -> Vector4f.h
+  Transform4x4f.h -> Vector3f.h
+  Transform4x4f.cpp -> Transform4x4f.h
+
+  Vector2f.cpp -> _.utils.StringUtil.h
+  Vector4f.cpp -> _.utils.StringUtil.h
+
+  # Color outgoing connections as red
+  (Vector2f.cpp -> _.utils.StringUtil.h)[0].style.stroke: red
+  (Vector4f.cpp -> _.utils.StringUtil.h)[0].style.stroke: red
+}
+
+renderers {
+  Renderer.h
+  Renderer.cpp -> Renderer.h
+  Renderer.cpp -> ImageIO.h
+  Renderer.cpp -> Renderer_GL21.h
+  Renderer.cpp -> Renderer_GLES10.h
+  Renderer.cpp -> Renderer_GLES20.h
+  Renderer.cpp -> _.utils.StringUtil.h
+  Renderer.cpp -> _.utils.Platform.h
+  Renderer.cpp -> _.resources.ResourceManager.h
+
+  GlExtensions.h
+  GlExtensions.cpp -> GlExtensions.h
+  GlExtensions.cpp -> _.Log.h
+  GlExtensions.cpp -> _.Log.h
+
+  Renderer.h -> _.math.Vector2f.h
+  Renderer.h -> _.math.Vector3f.h
+
+  Renderer.cpp -> _.Log.h
+  Renderer.cpp -> _.Settings.h
+  Renderer.cpp -> _.math.Vector2i.h
+  Renderer.cpp -> _.math.Transform4x4f.h
+
+  Renderer_GLES10.h -> Renderer.h
+  Renderer_GLES10.cpp -> Renderer.h
+  Renderer_GLES10.cpp -> Renderer_GLES10.h
+  Renderer_GLES10.cpp -> GlExtensions.h
+  Renderer_GLES10.cpp -> _.Log.h
+  Renderer_GLES10.cpp -> _.Settings.h
+  Renderer_GLES10.cpp -> _.math.Transform4x4f.h
+
+  Renderer_GL21.h -> Renderer.h
+  Renderer_GL21.cpp -> Renderer.h
+  Renderer_GL21.cpp -> Renderer_GL21.h
+  Renderer_GL21.cpp -> _.Log.h
+  Renderer_GL21.cpp -> _.Settings.h
+  Renderer_GL21.cpp -> _.math.Transform4x4f.h
+
+  Renderer_GLES20.h -> Renderer.h
+  Renderer_GLES20.cpp -> Renderer_GLES20.h
+  Renderer_GLES20.cpp -> Renderer_GLES20.h
+  Renderer_GLES20.cpp -> Renderer.h
+  Renderer_GLES20.cpp -> GlExtensions.h
+  Renderer_GLES20.cpp -> Shader.h
+  Renderer_GLES20.cpp -> _.Log.h
+  Renderer_GLES20.cpp -> _.Settings.h
+  Renderer_GLES20.cpp -> _.math.Transform4x4f.h
+  Renderer_GLES20.cpp -> _.utils.FileSystemUtil.h
+  Renderer_GLES20.cpp -> _.utils.StringUtil.h
+  Renderer_GLES20.cpp -> _.resources.ResourceManager.h
+
+  Shader.h -> GlExtensions.h
+  Shader.h -> _.math.Transform4x4f.h
+
+  Shader.cpp -> Shader.h
+  Shader.cpp -> Renderer.h
+  Shader.cpp -> _.Log.h
+  Shader.cpp -> _.utils.HtmlColor.h
+  Shader.cpp -> _.utils.StringUtil.h
+  Shader.cpp -> _.resources.ResourceManager.h
+}
+
+utils {
+  Paths.h
+  FileSystemUtil.h -> TimeUtil.h
+  FileSystemUtil.cpp -> FileSystemUtil.h
+  FileSystemUtil.cpp -> StringUtil.h
+  FileSystemUtil.cpp -> ZipFile.h
+  FileSystemUtil.cpp -> md5.h
+  FileSystemUtil.cpp -> Paths.h
+  FileSystemUtil.cpp -> _.Settings.h
+
+  HtmlColor.cpp -> StringUtil.h
+  HtmlColor.cpp -> _.Log.h
+
+  MathExpr.h
+  MathExpr.cpp -> MathExpr.h
+  MathExpr.cpp -> StringUtil.h
+  MathExpr.cpp -> FileSystemUtil.h
+  MathExpr.cpp -> TimeUtil.h
+  MathExpr.cpp -> LocaleES.h
+  MathExpr.cpp -> _.math.Misc.h
+
+  Platform.h
+  Window.h
+  Platform.cpp -> Platform.h
+  Platform.cpp -> Window.h
+  Platform.cpp -> FileSystemUtil.h
+  Platform.cpp -> StringUtil.h
+  Platform.cpp -> Scripting.h
+  Platform.cpp -> Paths.h
+  Platform.cpp -> _.Log.h
+
+  Randomizer.h
+  Randomizer.cpp -> Randomizer.h
+
+  StringListLock.h
+  StringListLock.cpp -> StringListLock.h
+
+  StringUtil.h
+  StringUtil.cpp -> StringUtil.h
+  StringUtil.cpp -> han.h
+
+  ThreadPool.h
+  ThreadPool.cpp -> ThreadPool.h
+
+  TimeUtil.h
+  TimeUtil.cpp -> TimeUtil.h
+  TimeUtil.cpp -> StringUtil.h
+  TimeUtil.cpp -> LocaleES.h
+
+  ZipFile.h
+  ZipFile.cpp -> ZipFile.h
+  ZipFile.cpp -> LocaleES.h
+  ZipFile.cpp -> zip_file.hpp
+  ZipFile.cpp -> FileSystemUtil.h
+  ZipFile.cpp -> md5.h
+  ZipFile.cpp -> _.Log.h
+
+  md5.h
+  md5.cpp -> md5.h
+}
