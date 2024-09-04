@@ -96,7 +96,7 @@ std::vector<const char *> settings_dont_save{
 
 Settings::Settings() : mLoaded(false) {
   setDefaults();
-  loadFile();
+  // loadFile();
   mLoaded = true;
 }
 

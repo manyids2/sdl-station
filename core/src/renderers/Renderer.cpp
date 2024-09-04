@@ -227,13 +227,6 @@ static bool createWindow() {
                   : SDL_WINDOW_FULLSCREEN)) |
       getWindowFlags();
 
-#if WIN32
-  if (Settings::getInstance()->getBool("AlwaysOnTop"))
-    windowFlags |= SDL_WINDOW_ALWAYS_ON_TOP;
-
-  windowFlags |= SDL_WINDOW_ALLOW_HIGHDPI;
-#endif
-
   if ((sdlWindow = SDL_CreateWindow("EmulationStation", sdlWindowPosition.x(),
                                     sdlWindowPosition.y(), windowWidth,
                                     windowHeight, windowFlags)) == nullptr) {
@@ -242,53 +235,10 @@ static bool createWindow() {
   }
 
   createContext();
-  setIcon();
+  // NOTE: Not creating icon because that needs a file
+  // setIcon();
   setSwapInterval();
   swapBuffers();
-
-#if WIN32
-  if (windowFlags & SDL_WINDOW_BORDERLESS) {
-    int x;
-    int y;
-    SDL_GetWindowPosition(sdlWindow, &x, &y);
-
-    SDL_SetWindowBordered(sdlWindow, SDL_bool::SDL_TRUE);
-
-    SDL_SysWMinfo wmInfo;
-    SDL_VERSION(&wmInfo.version);
-    SDL_GetWindowWMInfo(sdlWindow, &wmInfo);
-    HWND hWnd = wmInfo.info.win.window;
-    if (hWnd != NULL) {
-      LONG lStyle = GetWindowLong(hWnd, GWL_STYLE);
-      lStyle &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX |
-                  WS_SYSMENU);
-      SetWindowLong(hWnd, GWL_STYLE, lStyle);
-
-      LONG lExStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
-      lExStyle &= ~(WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE);
-      SetWindowLong(hWnd, GWL_EXSTYLE, lExStyle);
-
-      // Check if the major and minor versions indicate Windows 11 or newer
-      if (Utils::Platform::isWindows11()) {
-        BOOL isComposited;
-        HRESULT result = ::DwmIsCompositionEnabled(&isComposited);
-        if (SUCCEEDED(result) && isComposited) {
-          int preference =
-              1; // DWM_WINDOW_CORNER_PREFERENCE::DWMWCP_DONOTROUND;
-          HRESULT ret = ::DwmSetWindowAttribute(
-              hWnd, 33, &preference,
-              sizeof(preference)); // DWMWA_WINDOW_CORNER_PREFERENCE
-        }
-      }
-
-      SetWindowPos(hWnd, NULL, x, y, windowWidth, windowHeight,
-                   SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOOWNERZORDER);
-    } else {
-      SDL_SetWindowBordered(sdlWindow, SDL_bool::SDL_FALSE);
-      SDL_SetWindowPosition(sdlWindow, x, y);
-    }
-  }
-#endif
 
   return true;
 

@@ -2,6 +2,7 @@
 
 #include "Log.h"
 #include "Paths.h"
+#include "math/Misc.h"
 #include "math/Vector4f.h"
 #include "renderers/Renderer.h"
 #include "utils/FileSystemUtil.h"

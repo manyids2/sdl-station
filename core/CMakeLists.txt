@@ -8,6 +8,7 @@ set(CORE_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/SystemConf.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/LocaleES.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Log.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ImageIO.h
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Misc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Vector2i.h
@@ -49,6 +50,7 @@ set(CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/SystemConf.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/LocaleES.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Log.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/ImageIO.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Misc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Vector2i.cpp

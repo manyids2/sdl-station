@@ -87,7 +87,8 @@ bool SystemConf::loadSystemConf() {
 
 bool SystemConf::saveSystemConf() {
   if (mSystemConfFile.empty())
-    return Settings::getInstance()->saveFile();
+    // return Settings::getInstance()->saveFile();
+    return true;
 
   if (changedConf.empty())
     return false;
