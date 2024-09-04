@@ -184,6 +184,7 @@ static bool createWindow() {
   }
 
   int monitorId = Settings::getInstance()->getInt("MonitorID");
+  LOG(LogError) << "MonitorID: " << monitorId << "\n\t";
   if (monitorId >= 0 &&
       sdlWindowPosition ==
           Vector2i(SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED)) {

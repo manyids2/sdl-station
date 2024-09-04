@@ -9,6 +9,7 @@ set(CORE_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/src/LocaleES.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Log.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ImageIO.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Scripting.h
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Misc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Vector2i.h
@@ -51,6 +52,7 @@ set(CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/LocaleES.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Log.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/ImageIO.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Scripting.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Misc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/math/Vector2i.cpp
@@ -71,7 +73,7 @@ set(CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils/Platform.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/ResourceManager.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/TextureResource.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/TextureResource.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/TextureData.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/TextureDataManager.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/Font.cpp

@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(OpenGL_GL_PREFERENCE LEGACY)
+# set(OpenGL_GL_PREFERENCE LEGACY)
 
 option(GLES "Set to ON if targeting Embedded OpenGL" ${GLES})
-option(GLES2 "Set to ON if targeting OpenGL ES 2.0" ${GLES2})
+option(GLES2 "Set to ON if targeting OpenGL ES 2.0" ON)
 option(GL "Set to ON if targeting Desktop OpenGL" ${GL})
+option(BATOCERA "Set to ON to enable BATOCERA specific code" OFF)
 
 project(sdl-station)
 
@@ -51,6 +52,11 @@ find_package(SDL2 REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(FreeImage REQUIRED)
 find_package(ALSA REQUIRED)
+
+if(BATOCERA)
+  MESSAGE("Batocera build")
+  add_definitions(-DBATOCERA)
+endif()
 
 find_package(udev)
 if(UDEV_FOUND)

@@ -458,8 +458,9 @@ bool TextureData::load(bool updateCache) {
   if (ext == ".pdf")
     return PdfHandler != nullptr ? loadFromPdf() : false;
 
-  if (Utils::FileSystem::isVideo(mPath))
-    return loadFromVideo();
+  // NOTE: Disabled due to lack of vlc
+  // if (Utils::FileSystem::isVideo(mPath))
+  //   return loadFromVideo();
 
   std::string path = mPath;
   int subImageIndex = -1;
@@ -472,12 +473,13 @@ bool TextureData::load(bool updateCache) {
 
   const ResourceData &data = ResourceManager::getInstance()->getFileData(path);
 
+  // NOTE: Disabled due to lack of nanosvg
   // is it an SVG?
-  if (ext == ".svg") {
-    mScalable = true;
-    return initSVGFromMemory((const unsigned char *)data.ptr.get(),
-                             data.length);
-  }
+  // if (ext == ".svg") {
+  //   mScalable = true;
+  //   return initSVGFromMemory((const unsigned char *)data.ptr.get(),
+  //                            data.length);
+  // }
 
   bool retval = initImageFromMemory((const unsigned char *)data.ptr.get(),
                                     data.length, subImageIndex);
