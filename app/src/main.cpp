@@ -1,6 +1,7 @@
 #include "Log.h"
 #include "Paths.h"
 #include "SDL_events.h"
+#include "SDL_keycode.h"
 #include "SDL_timer.h"
 #include "Settings.h"
 #include "renderers/Renderer.h"
@@ -22,7 +23,7 @@ bool parseArgs(int argc, char *argv[]) {
 
   // Settings that are accessed from parseArgs:
 
-  Settings::getInstance()->setString("LogLevel", "debug");
+  Settings::getInstance()->setString("LogLevel", "error");
   // Settings::getInstance()->setInt("MonitorID", monitorId);
 
   Settings::getInstance()->setInt("WindowWidth", width);
@@ -99,10 +100,16 @@ int main(int argc, char **argv) {
   bool running = true;
 
   while (running) {
-    SDL_Event event;
-    if (SDL_PollEvent(&event)) {
-      // if (event.type == SDL_QUIT)
-      running = false;
+    SDL_Event ev;
+    if (SDL_PollEvent(&ev)) {
+      if (ev.type == SDL_QUIT)
+        running = false;
+
+      switch (ev.type) {
+      case SDL_KEYDOWN:
+        if (ev.key.keysym.sym == SDLK_ESCAPE)
+          running = false;
+      }
     }
 
     int curTime = SDL_GetTicks();
