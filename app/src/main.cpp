@@ -1,59 +1,24 @@
 #include "Log.h"
-#include "Paths.h"
 #include "SDL_events.h"
 #include "SDL_keycode.h"
 #include "SDL_timer.h"
 #include "Settings.h"
 #include "renderers/Renderer.h"
-// #include "renderers/Renderer.h"
 #include <csignal>
 #include <iostream>
 
+#define WIDTH 1280
+#define HEIGHT 720
+
 bool parseArgs(int argc, char *argv[]) {
-  // We need to process --home before any call to Settings::getInstance(),
-  // because settings are loaded from homepath
-  Paths::setExePath(argv[0]);
-  Settings::getInstance();
-
-  int width, height;
-  width = 1280;
-  height = 720;
-
-  // Paths::setHomePath(home);
-
-  // Settings that are accessed from parseArgs:
-
   Settings::getInstance()->setString("LogLevel", "error");
-  // Settings::getInstance()->setInt("MonitorID", monitorId);
 
-  Settings::getInstance()->setInt("WindowWidth", width);
-  Settings::getInstance()->setInt("WindowHeight", height);
-  Settings::getInstance()->setBool("FullscreenBorderless", false);
-
-  Settings::getInstance()->setInt("ScreenWidth", width);
-  Settings::getInstance()->setInt("ScreenHeight", height);
-
-  Settings::getInstance()->setInt("ScreenOffsetX", 0);
-  Settings::getInstance()->setInt("ScreenOffsetY", 0);
-
-  Settings::getInstance()->setInt("ScreenRotate", 0);
-  // Settings::getInstance()->setBool("ParseGamelistOnly", true);
-  // Settings::getInstance()->setBool("IgnoreGamelist", true);
-  // Settings::getInstance()->setBool("DrawFramerate", true);
-  // Settings::getInstance()->setBool("ShowExit", false);
-  // Settings::getInstance()->setBool("ExitOnRebootRequired", true);
-  // Settings::getInstance()->setBool("SplashScreen", false);
-  // Settings::getInstance()->setString("AlternateSplashScreen", argv[i + 1]);
-  // Settings::getInstance()->setBool("Debug", true);
-  // Settings::getInstance()->setBool("HideConsole", false);
-  // Settings::getInstance()->setBool("FullscreenBorderless", true);
-  // Settings::getInstance()->setBool("FullscreenBorderless", false);
+  Settings::getInstance()->setInt("WindowWidth", WIDTH);
+  Settings::getInstance()->setInt("WindowHeight", HEIGHT);
+  Settings::getInstance()->setInt("ScreenWidth", WIDTH);
+  Settings::getInstance()->setInt("ScreenHeight", HEIGHT);
   Settings::getInstance()->setBool("Windowed", true);
-  // Settings::getInstance()->setBool("VSync", vsync);
-  // Settings::getInstance()->setInt("MaxVRAM", maxVRAM);
-  // Settings::getInstance()->setBool("ForceKiosk", true);
-  // Settings::getInstance()->setBool("ForceKid", true);
-  // Settings::getInstance()->setBool("ForceDisableFilters", true);
+  Settings::getInstance()->setBool("FullscreenBorderless", false);
   return true;
 }
 
@@ -102,13 +67,23 @@ int main(int argc, char **argv) {
   while (running) {
     SDL_Event ev;
     if (SDL_PollEvent(&ev)) {
-      if (ev.type == SDL_QUIT)
-        running = false;
 
       switch (ev.type) {
+
+      case SDL_QUIT:
+        running = false;
+        break;
+
       case SDL_KEYDOWN:
         if (ev.key.keysym.sym == SDLK_ESCAPE)
           running = false;
+        break;
+
+      case SDL_JOYAXISMOTION:
+      case SDL_JOYBUTTONDOWN:
+      case SDL_JOYBUTTONUP:
+        running = false;
+        break;
       }
     }
 
@@ -120,6 +95,10 @@ int main(int argc, char **argv) {
     if (deltaTime < 0)
       deltaTime = 1000;
 
+    Renderer::drawRect((float)WIDTH / 4, (float)HEIGHT / 4, (float)WIDTH / 2,
+                       (float)HEIGHT / 2, 0xFF000033, 0xFF000033);
+    Renderer::drawRect((float)WIDTH / 3, (float)HEIGHT / 3, (float)WIDTH / 3,
+                       (float)HEIGHT / 3, 0xFF000033, 0xFF000033);
     Renderer::swapBuffers();
 
     Log::flush();
