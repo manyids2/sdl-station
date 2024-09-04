@@ -48,6 +48,8 @@ else()
     find_package(OpenGLES REQUIRED)
 endif()
 find_package(SDL2 REQUIRED)
+find_package(Freetype REQUIRED)
+find_package(FreeImage REQUIRED)
 find_package(ALSA REQUIRED)
 
 find_package(udev)
@@ -91,6 +93,8 @@ endif()
 #add include directories
 set(COMMON_INCLUDE_DIRS
     ${SDL2_INCLUDE_DIR}
+    ${FREETYPE_INCLUDE_DIRS}
+    ${FreeImage_INCLUDE_DIRS}
     ${ALSA_INCLUDE_DIRS}
 )
 
@@ -113,6 +117,8 @@ endif()
 
 set(COMMON_LIBRARIES
     ${SDL2_LIBRARY}
+    ${FREETYPE_LIBRARIES}
+    ${FreeImage_LIBRARIES}
     ${ALSA_LIBRARY}
 )
 
@@ -137,6 +143,15 @@ else()
         ${OPENGLES_LIBRARIES}
     )
 endif()
+
+# set(dir ${CMAKE_CURRENT_SOURCE_DIR}/build)
+# set(EXECUTABLE_OUTPUT_PATH ${dir} CACHE PATH "Build directory" FORCE)
+# set(LIBRARY_OUTPUT_PATH ${dir} CACHE PATH "Build directory" FORCE)
+
+#-------------------------------------------------------------------------------
+# Add core to common includes
+
+LIST(APPEND COMMON_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/core/src)
 
 #-------------------------------------------------------------------------------
 # add each component

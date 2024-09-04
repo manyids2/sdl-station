@@ -16,7 +16,7 @@
 
 #include "Log.h"
 #include "Paths.h"
-// #include "Scripting.h"
+#include "Scripting.h"
 // #include "Window.h"
 #include "utils/FileSystemUtil.h"
 #include "utils/StringUtil.h"
@@ -188,28 +188,32 @@ int runRestartCommand() {
 
 static QuitMode quitMode = QuitMode::QUIT;
 
-// int quitES(QuitMode mode) {
-//   quitMode = mode;
-//
-//   switch (quitMode) {
-//   case QuitMode::REBOOT:
-//   case QuitMode::FAST_REBOOT:
-//     Scripting::fireEvent("quit", "reboot");
-//     Scripting::fireEvent("reboot");
-//     break;
-//
-//   case QuitMode::SHUTDOWN:
-//   case QuitMode::FAST_SHUTDOWN:
-//     Scripting::fireEvent("quit", "shutdown");
-//     Scripting::fireEvent("shutdown");
-//     break;
-//   }
-//
-//   SDL_Event *quit = new SDL_Event();
-//   quit->type = SDL_QUIT;
-//   SDL_PushEvent(quit);
-//   return 0;
-// }
+int quitES(QuitMode mode) {
+  quitMode = mode;
+
+  switch (quitMode) {
+  case QuitMode::REBOOT:
+  case QuitMode::FAST_REBOOT:
+    Scripting::fireEvent("quit", "reboot");
+    Scripting::fireEvent("reboot");
+    break;
+
+  case QuitMode::SHUTDOWN:
+  case QuitMode::FAST_SHUTDOWN:
+    Scripting::fireEvent("quit", "shutdown");
+    Scripting::fireEvent("shutdown");
+    break;
+
+  case QuitMode::QUIT:
+  case QuitMode::RESTART:
+    break;
+  }
+
+  SDL_Event *quit = new SDL_Event();
+  quit->type = SDL_QUIT;
+  SDL_PushEvent(quit);
+  return 0;
+}
 
 void touch(const std::string &filename) {
 #ifndef WIN32
@@ -225,7 +229,7 @@ void processQuitMode() {
 
   switch (quitMode) {
   case QuitMode::QUIT:
-    // Scripting::fireEvent("quit");
+    Scripting::fireEvent("quit");
     break;
 
   case QuitMode::RESTART:

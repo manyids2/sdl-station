@@ -7,6 +7,7 @@
 #include "ImageIO.h"
 #include "Log.h"
 #include "Settings.h"
+#include "math/Misc.h"
 #include "math/Transform4x4f.h"
 #include "math/Vector2i.h"
 #include "resources/ResourceManager.h"
