@@ -89,5 +89,5 @@ set(CORE_SOURCES
 #-------------------------------------------------------------------------------
 # define target
 include_directories(${COMMON_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/src)
-add_library(core ${CORE_SOURCES} ${CORE_HEADERS})
+add_library(core STATIC ${CORE_SOURCES} ${CORE_HEADERS})
 target_link_libraries(core ${COMMON_LIBRARIES})

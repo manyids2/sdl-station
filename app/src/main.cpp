@@ -7,8 +7,8 @@
 #include <csignal>
 #include <iostream>
 
-#define WIDTH 1280
-#define HEIGHT 720
+#define WIDTH 640
+#define HEIGHT 480
 
 bool parseArgs(int argc, char *argv[]) {
   Settings::getInstance()->setString("LogLevel", "error");
